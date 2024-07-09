@@ -1,0 +1,55 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 スタッフ登録 結果画面
+            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try 
+                {
+                    require_once('../common/functions/sanitize.php');
+
+                    $post=sanitize($_POST);
+                    $staff_name=$post['name'];
+                    $staff_email=$post['email'];
+                    $staff_pass=$post['pass'];
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='INSERT INTO mst_staff(name,email,password) VALUES(?,?,?)';
+                    $stmt=$dbh->prepare($sql);
+                    $data=[];
+                    $data[]=$staff_name;
+                    $data[]=$staff_email;
+                    $data[]=$staff_pass;
+                    $stmt->execute($data);
+
+                    $dbh=null;
+
+                    echo $staff_name;
+                    echo 'さんを登録しました。<br/>';
+                    echo '<a href="staff_list.php">戻る</a>';
+                }
+                catch(Exception $e)
+                {
+                    echo $staff_name;
+                    echo 'さんを登録できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>

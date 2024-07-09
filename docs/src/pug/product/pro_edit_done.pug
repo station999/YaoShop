@@ -1,0 +1,69 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 登録結果
+            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try 
+                {
+                    require_once('../common/functions/sanitize.php');
+
+                    $post=sanitize($_POST);
+                    $pro_code=$post['code'];
+                    $pro_name=$post['name'];
+                    $pro_price=$post['price'];
+                    $pro_gazou_name_old=$_POST['gazou_name_old'];
+                    $pro_gazou_name=$_POST['gazou_name'];
+
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+
+                    $sql='UPDATE mst_product SET name=?,price=?,gazou=? WHERE code=?';
+                    $stmt=$dbh->prepare($sql);
+                    $data[]=$pro_name;
+                    $data[]=$pro_price;
+                    $data[]=$pro_gazou_name;
+                    $data[]=$pro_code;
+                    $stmt->execute($data);
+
+                    $dbh=null;
+
+                    if($pro_gazou_name_old!=$pro_gazou_name)
+                    {
+                        if($pro_gazou_name_old!='')
+                        {
+                            unlink('./gazou/'.$pro_gazou_name_old);
+                        }
+                    }
+
+                    echo $pro_name;
+                    echo 'を修正しました。<br/>';
+                }
+                catch(Exception $e)
+                {
+                    echo $pro_name;
+                    echo 'を登録できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+
+        div.form_contact
+            a.dta_select(href='./pro_list.php') 戻る

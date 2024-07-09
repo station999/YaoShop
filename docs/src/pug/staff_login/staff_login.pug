@@ -1,0 +1,30 @@
+extends ./../_layout/_page.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 スタッフ ログイン画面
+            
+
+block content
+    section.section__even
+        h2 スタッフログイン
+        form(method="post" action="staff_login_check.php" class="form_contact")
+            table.table_contact-form
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="code") スタッフ コード
+                    td.td_cttfm
+                        input(type="text" name="code" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="pass") パスワード
+                    td.td_cttfm
+                        input(type="text" name="pass" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="submit" value="ログイン" class="dta_select")

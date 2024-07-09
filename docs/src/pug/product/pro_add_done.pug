@@ -1,0 +1,58 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 登録結果
+            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try 
+                {
+                    require_once('../common/functions/sanitize.php');
+
+                    $post=sanitize($_POST);
+                    $pro_name=$post['name'];
+                    $pro_price=$post['price'];
+                    $pro_gazou_name=$post['gazou_name'];
+
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+
+                    $sql='INSERT INTO mst_product(name,price,gazou) VALUES(?,?,?)';
+                    $stmt=$dbh->prepare($sql);
+                    $data[]=$pro_name;
+                    $data[]=$pro_price;
+                    $data[]=$pro_gazou_name;
+                    $stmt->execute($data);
+
+                    $dbh=null;
+
+                    echo $pro_name;
+                    echo 'を登録しました。<br/>';
+                }
+                catch(Exception $e)
+                {
+                    echo $pro_name;
+                    echo 'を登録できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+
+        div.form_contact
+            a.dta_select(href='./pro_list.php') 戻る

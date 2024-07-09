@@ -1,0 +1,65 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 スタッフリスト 一覧画面            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try 
+                {
+                    require_once('../common/functions/sanitize.php');
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='SELECT code,name,email FROM mst_staff WHERE 1';
+                    $stmt=$dbh->prepare($sql);
+                    $stmt->execute();
+
+                    $dbh=null;
+
+                    echo 'スタッフ一覧<br/><br/>';
+
+                    echo '<form method="post" action="staff_branch.php">';
+                    while(true)
+                    {
+                        $rec=$stmt->fetch();
+                        if($rec==false)
+                        {
+                            break;
+                        }
+                        echo '<input type="radio" name="staffcode" value="'.$rec['code'].'">';
+                        echo $rec['name'].' _ _ _ ';
+                        echo $rec['email'];
+                        echo '<br/>';
+                    }
+                    echo '<br/>';
+                    echo '<input type="submit" name="disp" value="参照">';
+                    echo '<input type="submit" name="add" value="追加">';
+                    echo '<input type="submit" name="edit" value="修正">';
+                    echo '<input type="submit" name="delete" value="削除">';
+                    echo '</form>';
+                    echo '<br/>';
+                    echo '<a href="../staff_login/staff_top.php">トップメニュー へ</a>';
+                }
+                catch(Exception $e)
+                {
+                    echo 'リストを表示出来ませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+

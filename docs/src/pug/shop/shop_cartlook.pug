@@ -1,0 +1,158 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_customer.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 ショッピングカート 商品画面
+            
+
+block content
+    section.section__even
+        .
+            <?php
+                try 
+                {
+                    $cart=$_SESSION['cart'];
+                    $kazu=$_SESSION['kazu'];
+                    $max=count($cart);
+
+                    if ($max == 0) {
+                      echo 'カートに商品がありません。<br>';
+                      echo '<a href="./shop_list.php">商品一覧にもどる</a>';
+                      exit();
+                    }
+
+                    
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $pro_name = [];
+                    $pro_price = [];
+                    $pro_gazou = [];
+
+                    foreach($cart as $key => $val)
+                    {
+                      $sql='SELECT code,name,price,gazou FROM mst_product WHERE code=?';
+                      $stmt=$dbh->prepare($sql);
+                      $data[0]=$val;
+                      $stmt->execute($data);
+
+                      $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+
+                      $pro_name[]=$rec['name'];
+                      $pro_price[]=$rec['price'];
+                      if($rec['gazou']=='')
+                      {
+                        $pro_gazou[]='';
+                      }
+                      else
+                      {
+                        $pro_gazou[]='<img src="../product/gazou/'.$rec['gazou'].'">';
+                      }
+                    }
+                    $dbh=null;
+
+                }
+                catch(Exception $e)
+                {
+                    echo 'データを取得できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+
+
+        h2 カートの中身
+        br
+        |
+        |
+        .
+            <table clas="tabl_pro">
+            <thead class="thead_tblpro">
+            <tr class="tr_tblpro__head">
+                <th class="th_tblpro">商品画像</th>
+                <th class="th_tblpro">商品</th>
+            </tr>
+            <form method="post" action="kazu_change.php">
+            <?php for($i=0;$i<$max;$i++)
+                {
+            ?>
+
+            <tr class="tr_tblpro">
+                <td rowspan="5" class="td_tblpro" style="width:200px">
+                    <?php  echo $pro_gazou[$i]; ?>       
+                </td>
+                <td class="td_tblpro">
+                    <?php  echo $pro_name[$i]; ?>       
+                </td>
+            </tr>
+            <tr class="tr_tblpro">
+                <td class="td_tblpro">
+                    <?php  echo $pro_price[$i].'円'; ?>
+                </td>
+            </tr>
+            <tr class="tr_tblpro">
+                <td class="td_tblpro">
+                    <input type="text" name="kazu<?php echo $i; ?>" value="<?php echo $kazu[$i]; ?>">     
+                    <?php  echo '個'; ?>       
+                </td>
+            </tr>
+            <tr class="tr_tblpro">
+                <td class="td_tblpro">
+                    <?php  echo '小計'.$pro_price[$i]*$kazu[$i].'円'; ?>
+                </td>
+            </tr>
+            <tr class="tr_tblpro">
+                <td class="td_tblpro">
+                    <?php  echo '削除'; ?>       
+                    <input type="checkbox" name="sakujo<?php echo $i; ?>">   
+                </td>
+            </tr>
+
+            <?php           
+                }
+            ?>
+            </table>
+
+        |
+        |
+        table.table_contact-form
+            tr.tr_cttfm
+                th.th_cttfm
+                    label(for="botton") -
+                td.td_cttfm
+                    input(type="hidden" name="max" value="<?php echo $max; ?>")
+                    input(type="submit" value="変更内容 反映")
+            tr.tr_cttfm
+                th.th_cttfm
+                    label(for="botton") -
+                td.td_cttfm
+                    a(href="./shop_form.php")
+                        | ご購入手続きへ進む
+            tr.tr_cttfm
+                th.th_cttfm
+                    label(for="botton") -
+                td.td_cttfm
+                    a(href="./shop_list.php")
+                        | 商品一覧にもどる
+            tr.tr_cttfm
+                th.th_cttfm
+                    label(for="botton") -
+                td.td_cttfm
+                    a(href="./clear_cart.php")
+                        | カートを空にする
+            tr.tr_cttfm
+                th.th_cttfm
+                    label(for="botton") -
+                td.td_cttfm
+                    input(type="button" onclick="history.back()" value="戻る" class="dta_select")

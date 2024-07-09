@@ -1,0 +1,59 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_customer.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 商品一覧 画面
+            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try 
+                {
+                    require_once('../common/functions/sanitize.php');
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='SELECT code,name,price FROM mst_product WHERE 1';
+                    $stmt=$dbh->prepare($sql);
+                    $stmt->execute();
+
+                    $dbh=null;
+                    echo '商品一覧<br/><br/>';
+
+                    while(true)
+                    {
+                        $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+                        if($rec==false)
+                        {
+                            break;
+                        }
+                        echo '<a href="shop_product.php?procode='.$rec['code'].'">';
+                        echo $rec['name'].' _ _ _ ';
+                        echo $rec['price'].' 円';
+                        echo '</a>';
+                        echo '<br/>';
+                    }
+                    
+                    echo '<br/>';
+                    echo '<a href="shop_cartlook.php">カートを見る</a><br/>';
+                    
+                }
+                catch(Exception $e)
+                {
+                    echo 'リストを表示出来ませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+            ?>

@@ -1,0 +1,28 @@
+block variables
+    include ./../_config/_main-data.pug
+
+block session
+
+doctype html
+html(lang="ja")
+    head
+        include ./../_include/_head.pug
+    body
+        div.site.ly_site
+            header.st_header
+                include ./../_include/_header.pug
+            div.st_container.lyst_main
+                main
+                    
+                    block title
+                    block content
+
+            footer.st_footer.lyst_ftr
+                include ./../_include/_footer.pug
+            |
+            |
+            |
+            block script
+                include ./../_include/_link-script.pug
+            |
+            |

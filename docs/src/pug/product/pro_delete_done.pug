@@ -1,0 +1,59 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 削除登録結果
+            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try 
+                {
+                    require_once('../common/functions/sanitize.php');
+
+                    $post=sanitize($_POST);
+                    $pro_name=$post['name'];
+                    $pro_code=$post['code'];
+                    $pro_gazou_name=$_POST['gazou_name'];
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='DELETE FROM mst_product WHERE code=?';
+                    $stmt=$dbh->prepare($sql);
+                    $data[]=$pro_code;
+                    $stmt->execute($data);
+
+                    $dbh=null;
+
+                    if($pro_gazou_name!='')
+                    {
+                        unlink('./gazou/'.$pro_gazou_name);
+                    }
+
+                    echo $pro_name;
+                    echo 'の情報を削除しました。<br/>';
+                }
+                catch(Exception $e)
+                {
+                    echo $pro_name;
+                    echo 'を削除できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+
+        div.form_contact
+            a.dta_select(href='./pro_list.php') 戻る

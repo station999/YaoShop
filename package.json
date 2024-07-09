@@ -1,0 +1,21 @@
+{
+  "name": "adsan-web-design",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-sass": "sass ./docs/src/sass/style.scss ./docs/dist/assets/css/style.css --watch",
+    "compile-pug": "pug --watch ./docs/src/pug --out ./docs/dist/html --pretty"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pug-cli": "^1.0.0-alpha6",
+    "sass": "^1.70.0"
+  }
+}

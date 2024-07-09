@@ -1,0 +1,80 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 スタッフ 削除画面
+            
+
+block content
+    section.section__even
+        .
+            <?php
+                try 
+                {
+                    $staff_code=$_GET['staffcode'];
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='SELECT name FROM mst_staff WHERE code=?';
+                    $stmt=$dbh->prepare($sql);
+                    $data[]=$staff_code;
+                    $stmt->execute($data);
+
+                    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+                    $staff_name=$rec['name'];
+
+                    $dbh=null;
+
+                }
+                catch(Exception $e)
+                {
+                    echo 'データを取得できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+
+        - var _myPhpCo = '<?php echo $staff_code; ?>';
+        - var _myPhpNa = '<?php echo $staff_name; ?>';
+
+        h2 スタッフ削除
+
+        table.table_contact-form
+            tr.tr_cttfm
+                th.th_cttfm
+                    | スタッフコード 2
+                td.td_cttfm 
+                    | !{_myPhpCo}
+            tr.tr_cttfm
+                th.th_cttfm
+                    | スタッフ名 
+                td.td_cttfm 
+                    | !{_myPhpNa}
+            tr.tr_cttfm
+                th.th_cttfm
+                    | 
+                td.td_cttfm 
+                    | 対象のスタッフデータを削除してよろしいですか？
+
+        form(method="post" action="./staff_delete_done.php" class="form_contact")
+            input(type="hidden" name="code" value!=_myPhpCo class="dta_select")                
+            input(type="hidden" name="name" value!=_myPhpNa class="dta_input")                
+            table.table_contact-form
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
+                        input(type="submit" value="OK" class="dta_select")
+

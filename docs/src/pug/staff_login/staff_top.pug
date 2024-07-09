@@ -1,0 +1,33 @@
+extends ./../_layout/_page_session.pug
+
+block session
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 管理 トップ画面
+            
+
+block content
+    section.section__even
+        h2 ショップ管理トップメニュー
+            table.table_contact-form
+                tr.tr_cttfm
+                    td.td_cttfm
+                        a(href="./../staff/staff_list.php")
+                            | スタッフ管理画面
+                tr.tr_cttfm
+                    td.td_cttfm
+                        a(href="./../product/pro_list.php")
+                            | 商品管理画面
+                tr.tr_cttfm
+                    td.td_cttfm
+                        a(href="./../order/order_download.php")
+                            | 注文データ ダウンロード
+                tr.tr_cttfm
+                    td.td_cttfm
+                        a(href="./staff_logout.php")
+                            | ログアウト

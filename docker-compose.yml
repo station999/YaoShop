@@ -1,0 +1,64 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1.25.0
+    container_name: "cnnr_NGINX"
+    ports:
+      - 8000:80
+    volumes:
+      # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
+      # - ./src:/var/www/html
+      - ./docs/dist:/var/www/html
+      # ./docker/nginxフォルダをコンテナ内の/etc/nginx/conf.dにマウント
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: "cnnr_PHP"
+    volumes:
+      # - ./src:/var/www/html
+      - ./docs/dist:/var/www/html
+    depends_on:
+      - mysql
+
+  mysql:
+    build: ./docker/mysql
+    container_name: "cnnr_mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #   MYSQL_USER: ${MYSQL_USER}
+    #   MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file: .env
+    volumes:
+      # 名前付きボリュームを MySQL コンテナに紐づける
+      - mysqldata:/var/lib/mysql
+      # 文字コードの設定ファイルを指定
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      # コンテナ作成時に走るシェルスクリプト指定
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: "cnnr_phpmyadmin"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      # PMA_USER: ${PMA_USER}
+      # PMA_PASSWORD: ${PMA_PASSWORD}
+    env_file: .env
+    depends_on:
+      - mysql
+    ports:
+      - 8006:80
+    restart: always
+
+volumes:
+  # 名前付きボリュームの作成
+  mysqldata:

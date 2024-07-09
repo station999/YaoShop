@@ -1,0 +1,58 @@
+extends ./../_layout/_page.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 スタッフログイン チェック画面
+            
+
+block content
+    section.section__even
+        . 
+            <?php
+                try
+                {
+                    require_once('../common/functions/sanitize.php');
+
+                    $post=sanitize($_POST);
+                    $staff_code=$post['code'];
+                    $staff_pass=$post['pass'];
+
+                    $staff_pass=md5($staff_pass);
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='SELECT name FROM mst_staff WHERE code=? AND password=?';
+                    $stmt=$dbh->prepare($sql);
+                    $data[]=$staff_code;
+                    $data[]=$staff_pass;
+                    $stmt->execute($data);
+
+                    $dbh=null;
+
+                    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if($rec==false)
+                    {
+                        echo 'スタッフコードかパスワードが間違っています。<br/>';
+                        echo '<a href="staff_login.php">戻る</a>';
+                    }
+                    else 
+                    {
+                        header('Location: staff_top.php');
+                    }      
+                }
+                catch(Exception $e)
+                {
+                    echo '通信障害のため確認できませんでした。<br/>';
+                    echo '大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>

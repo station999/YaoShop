@@ -1,0 +1,56 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    //- include ./../_config/_session-check_customer.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 お客様情報 登録画面
+            
+
+block content
+    section.section__even
+        p お客様情報を入力して下さい。
+        form(method="post" action="./shop_form_check.php" class="form_contact")
+            table.table_contact-form
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="onamae") Name 
+                    td.td_cttfm
+                        input(type="text" name="onamae" id="onamae" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="email") Email 
+                    td.td_cttfm
+                        input(type="email" name="email" id="email" class="dta_input" required)
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="postal") 郵便番号 
+                    td.td_cttfm
+                        input(
+                            type="text" name="postal" id="postal" class="dta_input"
+                            required pattern="\d{3}-\d{4}" title="郵便番号はXXX-XXXXの形式で入力してください"
+                            )
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="address") 住所
+                    td.td_cttfm
+                        input(type="text" name="address" id="address" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="tel") 電話番号
+                    td.td_cttfm
+                        input(
+                            type="tel" name="tel" id="tel" class="dta_input"
+                             required pattern="\d{2,4}-\d{2,4}-\d{4}" title="電話番号はXXXX-XXXX-XXXXの形式で入力してください"
+                             )
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
+                        input(type="submit" value="OK" class="dta_select")
+

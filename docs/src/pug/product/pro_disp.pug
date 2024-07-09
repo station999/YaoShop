@@ -1,0 +1,101 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 商品情報 参照画面
+            
+
+block content
+    section.section__even
+        .
+            <?php
+                try 
+                {
+                    $pro_code=$_GET['procode'];
+        |
+        |
+        include ./../_config/_db-connection.pug
+        |
+        |
+        |
+        .
+                    $sql='SELECT name,price,gazou FROM mst_product WHERE code=?';
+                    $stmt=$dbh->prepare($sql);
+                    $data[]=$pro_code;
+                    $stmt->execute($data);
+
+                    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+                    $pro_name=$rec['name'];
+                    $pro_price=$rec['price'];
+                    $pro_gazou_name=$rec['gazou'];
+
+                    $dbh=null;
+
+                    if($pro_gazou_name=='')
+                    {
+                        $disp_gazou='';
+                    }
+                    else
+                    {
+                        $disp_gazou='<img src="./gazou/'.$pro_gazou_name.'">';
+                    }
+
+                }
+                catch(Exception $e)
+                {
+                    echo 'データを取得できませんでした。<br/>';
+                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    exit();
+                }
+
+            ?>
+
+        - var _myPhpCo = '<?php echo $pro_code; ?>';
+        - var _myPhpNa = '<?php echo $pro_name; ?>';
+        - var _myPhpPr = '<?php echo $pro_price; ?>';
+        - var _myPhpGz = '<?php echo $disp_gazou; ?>';
+
+        h2 商品情報
+
+        //- form(class="form_contact")
+        form(method="post" action="pro_branch.php" class="form_contact")
+            input(type="hidden" name="procode" value!=_myPhpCo class="dta_select") 
+            table.table_contact-form
+                tr.tr_cttfm
+                    th.th_cttfm
+                        | 商品コード 
+                    td.td_cttfm 
+                        | !{_myPhpCo}
+                tr.tr_cttfm
+                    th.th_cttfm
+                        | 商品名 
+                    td.td_cttfm 
+                        | !{_myPhpNa}
+                tr.tr_cttfm
+                    th.th_cttfm
+                        | 価格 
+                    td.td_cttfm 
+                        | !{_myPhpPr} 円
+                tr.tr_cttfm
+                    th.th_cttfm
+                        | 画像 
+                    td.td_cttfm 
+                        | !{_myPhpGz}
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="submit" name="edit" value="修正" class="dta_select")
+                        input(type="submit" name="delete" value="削除" class="dta_select")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
+

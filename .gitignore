@@ -1,0 +1,7 @@
+#DIRECTORY
+.tmp.drivedownload/
+.tmp.driveupload/
+.vscode/
+
+#FILE
+.env

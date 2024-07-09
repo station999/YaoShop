@@ -1,0 +1,44 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 スタッフ 追加画面
+            
+
+block content
+    section.section__even
+        form(method="post" action="./staff_add_check.php" class="form_contact")
+            table.table_contact-form
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="name") Name 
+                    td.td_cttfm
+                        input(type="text" name="name" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="Email") Email 
+                    td.td_cttfm
+                        input(type="email" name="email" class="dta_input" required)
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="pass") Password 
+                    td.td_cttfm
+                        input(type="password" name="pass" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="pass2") Password again
+                    td.td_cttfm
+                        input(type="password" name="pass2" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
+                        input(type="submit" value="OK" class="dta_select")
+

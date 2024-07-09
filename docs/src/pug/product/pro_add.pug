@@ -1,0 +1,39 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 商品追加
+            
+
+block content
+    section.section__even
+        form(method="post" action="./pro_add_check.php" enctype="multipart/form-data" class="form_contact")
+            table.table_contact-form
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="name") Product Name 
+                    td.td_cttfm
+                        input(type="text" name="name" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="price") Price 
+                    td.td_cttfm
+                        input(type="text" name="price" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="gazou") Select image 
+                    td.td_cttfm
+                        input(type="file" name="gazou" class="dta_input")
+                tr.tr_cttfm
+                    th.th_cttfm
+                        label(for="botton") -
+                    td.td_cttfm
+                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
+                        input(type="submit" value="OK" class="dta_select")
+

@@ -1,0 +1,18 @@
+extends ./../_layout/_page_session.pug
+
+block session 
+    include ./../_config/_session-check_staff.pug
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 NG 画面
+            
+
+block content
+    section.section__even
+        p スタッフが選択されていません。
+        p 
+            a(href="./staff_list.php") 戻る

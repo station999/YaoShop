@@ -1,0 +1,21 @@
+. 
+    <?php
+        session_start();
+        session_regenerate_id(true);
+        if(isset($_SESSION['member_login'])==false)
+        {
+        echo 'ようこそゲスト様';
+        echo '<a href="member_login.php">会員ログイン</a><br/>';
+        echo '<br/>';
+        }
+        else
+        {
+        echo '<br/>';
+        echo '<section class="section__even">';
+        echo 'ようこそ';
+        echo $_SESSION['member_name'];
+        echo '様<br/>';
+        echo '<a href="member_logout.php">ログアウト</a><br/>';
+        echo '</section">';
+        }
+    ?>

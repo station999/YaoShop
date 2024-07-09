@@ -1,0 +1,35 @@
+extends ./../_layout/_page.pug
+
+block session 
+     . 
+        <?php
+            session_start();
+            // カートがセッションに存在するか確認し、存在する場合はカートを空にする
+            if(isset($_SESSION['cart'])==true)
+            {
+                $_SESSION['cart'] = [];
+            }
+            if(isset($_SESSION['kazu'])==true)
+            {
+                $_SESSION['kazu'] = [];
+            }
+        ?>
+
+
+block title
+    section.section__odd
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 カート クリア画面
+            
+
+block content
+    section.section__even
+        p カートを空にしました。
+        br
+        br
+        a(href="./shop_list.php")
+            | 商品一覧 画面へ        
+        br
+        a(href="./shop_cartlook.php")
+            | カートを確認 
