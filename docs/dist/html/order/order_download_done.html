@@ -135,6 +135,21 @@
                         $csv .= $rec['price'] . ',';
                         $csv .= $rec['quantity'];
                         $csv .= "\n";
+            
+                        $csvData[]=[
+                            $rec['code'],
+                            $rec['date'],
+                            $rec['code_member'],
+                            $rec['dat_sales_name'],
+                            $rec['email'],
+                            $rec['postal'],
+                            $rec['address'],
+                            $rec['tel'],
+                            $rec['code_product'],
+                            $rec['mst_product_name'],
+                            $rec['price'],
+                            $rec['quantity']
+                        ]
                     }
             
                     echo nl2br($csv);

@@ -1,0 +1,19 @@
+
+<?php
+    session_start();
+    session_regenerate_id(true);
+    if(isset($_SESSION['login'])==false)
+    {
+    echo 'ログインされていません。<br/>';
+    echo '<a href="./staff_login.php">ログイン画面へ</a>';
+    exit();
+    }
+    else
+    {
+    echo '<br/>';
+    echo '<section class="section__even">';
+    echo $_SESSION['staff_name'];
+    echo 'さんログイン中<br/>';
+    echo '</section">';
+    }
+?>
