@@ -1,0 +1,36 @@
+@use "../global/" as *;
+
+
+/* fundation/_base.scss */
+/* BASE */@media screen{
+  a{
+    color : $color_accent-fourth;
+    text-decoration: none;
+    &:hover{
+      color : $color_main-sec;
+    }
+  }
+  body{
+    color: $color_text-third;
+  }
+  code { /* code要素をソースコードらしく */
+    font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  }
+  html{
+    @media (max-width: 200px) { 
+      font-size: 7vw;
+    }
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    align-items: top;
+  }
+  ul{
+    list-style-type: none; /* マーカーなしを指定 */
+    margin: 0;
+    padding: 0;
+  }
+}	
+/* ↑ fundation/_base.scss */

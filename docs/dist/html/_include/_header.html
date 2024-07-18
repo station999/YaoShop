@@ -1,16 +1,14 @@
 
-<div class="ly_hdr_inner">
-  <div class="el_top-logo"><a href="#{siteDomain}"> <img class="img_plncd frm_pln_img" src="#{workDirPath}assetsimagescommonlogologo.png" style="height: 50px;" alt="Home Logo"/></a></div>
-  <input class="hmbg-btn" type="checkbox" id="hmbg-btn"/>
-  <label class="hmbg-icon" for="hmbg-btn"><span class="hmbg-icon_parts"></span></label>
-  <nav class="nav_global el_hdr_nav">
-    <ul class="ul_glbnv">
-      <li class="li_glbnv"> <a href="#{siteDomain}">Home</a></li>
-      <li class="li_glbnv"> <a href="###">情報</a></li>
-      <li class="li_glbnv"> <a href="###">商品</a></li>
-      <li class="li_glbnv"> <a href="###">注文</a></li>
-      <li class="li_glbnv"> <a href="###">登録</a></li>
-      <li class="li_glbnv"> <a href="#{siteDomain}/staff">スタッフ</a></li>
-    </ul>
-  </nav>
-</div>
+<nav class="row d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-warning bg-body-secondary">
+  <div class="col-12 col-md-1 mb-2 mb-md-0"><a class="d-inline-flex link-body-emphasis text-decoration-none"><img class="d-inline-block align-text-top" src="undefined/dist/images/common/logo/logo.png" alt="Logo" width="40" height="32"/></a></div>
+  <ul class="nav col-12 col-md-6 mb-2 justify-content-center mb-md-0">
+    <li class="nav-item px-2"> <a class="nav-link">Home</a></li>
+    <li class="nav-item px-2"><a class="nav-link" href="undefined/product/pro_list.php">商品一覧</a></li>
+    <li class="nav-item px-2"><a class="nav-link" href="undefined/shop/shop_list.php">注文ページ</a></li>
+  </ul>
+  <div class="col-12 col-md-5 text-end">
+    <button class="btn btn-outline-primary me-2" type="button">Login<a class="nav-link" href="undefined/member/member_top.php">お客様 ログイン</a></button>
+    <button class="btn btn-outline-primary me-2" type="button">Login<a class="nav-link" href="undefined/staff_login/staff_top.php">スタッフ ログイン</a></button>
+    <button class="btn btn-primary" type="button">Sign-up</button>
+  </div>
+</nav>

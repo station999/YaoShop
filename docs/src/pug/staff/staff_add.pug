@@ -3,42 +3,36 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ登録
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフ 追加画面
+                h1 スタッフ 登録画面
             
 
 block content
-    section.section__even
-        form(method="post" action="./staff_add_check.php" class="form_contact")
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="name") Name 
-                    td.td_cttfm
-                        input(type="text" name="name" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="Email") Email 
-                    td.td_cttfm
-                        input(type="email" name="email" class="dta_input" required)
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="pass") Password 
-                    td.td_cttfm
-                        input(type="password" name="pass" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="pass2") Password again
-                    td.td_cttfm
-                        input(type="password" name="pass2" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
-                        input(type="submit" value="OK" class="dta_select")
-
+    section.container.p-4
+        form(method="post" action="./staff_add_check.php").bg-primary-subtle.p-4.mt-4
+            div.mb-3
+                label(for="name").form-label Name
+                input(type="text" name="name" aria-describedby="nameHelp").form-control#exampleInputEmail1
+                div.form-text#emailHelp Please enter your full name for comfirmation.
+            div.mb-3
+                label(for="Email1").form-label Email address
+                input(type="email" name="email" aria-describedby="emailHelp").form-control#exampleInputEmail1
+                div.form-text#emailHelp We'll never share your email with anyone else.
+            div.mb-3
+                label(for="pass").form-label Password
+                input(type="password" name="pass").form-control#exampleInputPassword1
+            div.mb-3
+                label(for="pass2").form-label Password again
+                input(type="password" name="pass2").form-control#exampleInputPassword1
+                div.form-text#emailHelp Please enter your password again for comfirmation.
+            div.mb-3.form-check
+                input(type="checkbox").form-check-input#exampleCheck1
+                label(for="exampleCheck1").form-check-label Check me out
+            button(type="submit").btn.btn-primary Submit
+            button(type="button" onclick="history.back()").btn.btn-secondary Buck

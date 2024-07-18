@@ -1,0 +1,22 @@
+@use "../global/" as *;
+
+
+/* fundation/_reset.scss */
+/* RESET */@media screen{
+  dl{
+    margin: 0;
+    padding: 0;
+    dd{
+      margin-left: 0;
+    }
+  }
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  pre{
+    margin: 0;
+    padding: 0;
+  }
+}	
+/* ↑ fundation/_reset.scss */

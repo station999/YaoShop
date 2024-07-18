@@ -3,9 +3,11 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ登録実行
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
                 h1 スタッフ登録 結果画面
@@ -40,14 +42,25 @@ block content
 
                     $dbh=null;
 
+                    echo '<p>';
+                    echo '<span class="fs-6 font-weight-bold">';
                     echo $staff_name;
-                    echo 'さんを登録しました。<br/>';
+                    echo '</span>';
+                    echo 'さんを登録しました。';
+                    echo '</p>';
+                    echo '<button class="btn btn-warning" type="button">';
                     echo '<a href="staff_list.php">戻る</a>';
+                    echo '</button>';
                 }
                 catch(Exception $e)
                 {
+                    echo '<p>';
+                    echo '<span class="fs-6 font-weight-bold">';
                     echo $staff_name;
-                    echo 'さんを登録できませんでした。<br/>';
+                    echo '</span>';
+                    echo 'さんを登録できませんでした。';
+                    echo '</p>';
+                    echo '<br/>';
                     echo 'ただいま障害により大変ご迷惑をおかけしております。';
                     exit();
                 }

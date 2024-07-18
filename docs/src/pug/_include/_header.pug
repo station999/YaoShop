@@ -1,23 +1,19 @@
-div.ly_hdr_inner
-    div.el_top-logo
-        a(href="#{siteDomain}") 
-            img(class="img_plncd frm_pln_img" src="#{workDirPath}\assets\images\common\logo\logo.png"  style="height: 50px;" alt="Home Logo")
-    //- HAMBURGER MENU 
-    input(type="checkbox" class="hmbg-btn" id="hmbg-btn")
-    label(for="hmbg-btn" class="hmbg-icon")
-        span.hmbg-icon_parts
-    nav.nav_global.el_hdr_nav
-        ul.ul_glbnv
-            li.li_glbnv 
-                a(href="#{siteDomain}") Home
-            li.li_glbnv 
-                a(href="###") 情報
-            li.li_glbnv 
-                a(href="###") 商品
-            li.li_glbnv 
-                a(href="###") 注文
-            li.li_glbnv 
-                a(href="###") 登録
-            li.li_glbnv 
-                a(href="#{siteDomain}/staff") スタッフ
-//-.hdr_inner
+nav.row.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom.bg-warning.bg-body-secondary
+    div.col-12.col-md-1.mb-2.mb-md-0
+        a(href=siteDomain).d-inline-flex.link-body-emphasis.text-decoration-none
+            img(src=hostPath + "/dist/images/common/logo/logo.png" 
+                alt="Logo" width="40" height="32").d-inline-block.align-text-top
+    ul.nav.col-12.col-md-6.mb-2.justify-content-center.mb-md-0
+        li.nav-item.px-2 
+            a.nav-link(href=siteDomain) Home
+        li.nav-item.px-2
+            a.nav-link(href=siteDomain + "/product/pro_list.php") 商品一覧
+        li.nav-item.px-2
+            a.nav-link(href=siteDomain + "/shop/shop_list.php") 注文ページ
+    div.col-12.col-md-5.text-end
+        button(type="button").btn.btn-outline-primary.me-2 Login
+            a.nav-link(href=siteDomain + "/member/member_top.php") お客様 ログイン
+        button(type="button").btn.btn-outline-primary.me-2 Login
+            a.nav-link(href=siteDomain + "/staff_login/staff_top.php") スタッフ ログイン
+        button(type="button").btn.btn-primary Sign-up
+

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-sass": "sass ./docs/src/sass/style.scss ./docs/dist/assets/css/style.css --watch",
+    "compile-sass": "sass ./docs/src/sass/style.scss ./docs/dist/css/style.css --watch",
     "compile-pug": "pug --watch ./docs/src/pug --out ./docs/dist/html --pretty"
   },
   "keywords": [],
@@ -16,6 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "pug-cli": "^1.0.0-alpha6",
-    "sass": "^1.70.0"
+    "sass": "^1.77.8"
   }
 }

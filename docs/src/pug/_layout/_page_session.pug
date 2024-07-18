@@ -1,5 +1,5 @@
 block variables
-    include ./../_config/_main-data.pug
+    include ./../_config/_main-variables.pug
 
 block session
     //- include ./../_config/_session-check.pug
@@ -9,17 +9,18 @@ doctype html
 html(lang="ja")
     head
         include ./../_include/_head.pug
-    body
-        div.site.ly_site
+        block meta_title
+    body.text-bg-secondary
+        div.container.text-bg-light.p-3
             header.st_header
                 include ./../_include/_header.pug
-            div.st_container.lyst_main
+            div.st_main
                 main
                     
                     block title
                     block content
 
-            footer.st_footer.lyst_ftr
+            footer.st_footer.footer
                 include ./../_include/_footer.pug
             |
             |
