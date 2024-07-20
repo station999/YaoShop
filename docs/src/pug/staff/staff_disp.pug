@@ -3,12 +3,14 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ情報
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフ 情報編集
+                h1 スタッフ情報 表示画面
             
 
 block content
@@ -25,21 +27,23 @@ block content
         |
         |
         .
-                    $sql='SELECT name FROM mst_staff WHERE code=?';
+                    $sql='SELECT name,email FROM mst_staff WHERE code=?';
                     $stmt=$dbh->prepare($sql);
+                    $data=[];
                     $data[]=$staff_code;
                     $stmt->execute($data);
 
                     $rec=$stmt->fetch(PDO::FETCH_ASSOC);
                     $staff_name=$rec['name'];
+                    $staff_email=$rec['email'];
 
                     $dbh=null;
 
                 }
                 catch(Exception $e)
                 {
-                    echo 'データを取得できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '<p>データを取得できませんでした。</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
@@ -47,32 +51,26 @@ block content
 
         - var _myPhpCo = '<?php echo $staff_code; ?>';
         - var _myPhpNa = '<?php echo $staff_name; ?>';
+        - var _myPhpEm = '<?php echo $staff_email; ?>';
 
-        h2 スタッフ情報参照
-
-        //- form(class="form_contact")
-        form(method="post" action="staff_branch.php" class="form_contact")
-            input(type="hidden" name="staffcode" value!=_myPhpCo class="dta_select") 
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | スタッフコード 
-                    td.td_cttfm 
-                        | !{_myPhpCo}
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | スタッフ名 
-                    td.td_cttfm 
-                        | !{_myPhpNa}
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="submit" name="edit" value="修正" class="dta_select")
-                        input(type="submit" name="delete" value="削除" class="dta_select")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
+        p.mt-4.fw-bold.text-decoration-underline スタッフ情報参照
+        form(method="post" action="./staff_branch.php").bg-primary-subtle.p-4.mt-4
+            input(type="hidden" name="staffcode" value!=_myPhpCo).form-control                
+            div.mb-3
+                label(for="code").form-label Staff Code
+                input(type="text" value!=_myPhpCo disabled readonly).form-control
+            div.mb-3
+                label(for="name").form-label Name
+                input(type="text" name="name" value!=_myPhpNa disabled readonly).form-control
+            div.mb-3
+                label(for="email").form-label Email address
+                input(type="email" name="email" value!=_myPhpEm disabled readonly).form-control
+            div.mb-3
+                label(for="button").form-label 処理の選択
+                br
+                div(role="group").btn-group
+                    button(type="submit" name="edit" value="修正").btn.btn-outline-primary edit
+                    button(type="submit" name="delete" value="削除").btn.btn-outline-primary deletion
+            div.mb-3
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck
 

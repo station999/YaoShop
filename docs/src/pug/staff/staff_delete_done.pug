@@ -3,12 +3,14 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ削除実行
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 編集登録結果
+                h1 スタッフ削除 結果画面
             
 
 block content
@@ -36,18 +38,26 @@ block content
 
                     $dbh=null;
 
+                    echo '<p>';
+                    echo '<span class="fs-6 fw-bold">';
                     echo $staff_name;
-                    echo 'さんの情報を削除しました。<br/>';
+                    echo '</span>';
+                    echo 'さんの情報を削除しました。';
+                    echo '</p>';
                 }
                 catch(Exception $e)
                 {
+                    echo '<p>';
+                    echo '<span class="fs-6 font-weight-bold">';
                     echo $staff_name;
-                    echo 'さんを削除できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '</span>';
+                    echo 'さんを削除できませんでした。';
+                    echo '</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
             ?>
 
-        div.form_contact
-            a.dta_select(href='./staff_list.php') 戻る
+        button(type="button").btn.btn-warning.my-3
+            a(href="./staff_list.php") 戻る

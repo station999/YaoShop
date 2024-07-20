@@ -4,7 +4,7 @@
     session_regenerate_id(true);
     if(isset($_SESSION['login'])==false)
     {
-        echo 'ログインされていません。<br/>';
+        echo '<p>ログインされていません。</p>';
         echo '<a href="./staff_login.php">ログイン画面へ</a>';
         exit();
     }

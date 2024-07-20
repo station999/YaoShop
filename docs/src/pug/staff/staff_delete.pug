@@ -3,12 +3,14 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ削除
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフ 削除画面
+                h1 スタッフ削除 対象表示画面
             
 
 block content
@@ -38,8 +40,8 @@ block content
                 }
                 catch(Exception $e)
                 {
-                    echo 'データを取得できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '<p>データを取得できませんでした。</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
@@ -48,33 +50,19 @@ block content
         - var _myPhpCo = '<?php echo $staff_code; ?>';
         - var _myPhpNa = '<?php echo $staff_name; ?>';
 
-        h2 スタッフ削除
-
-        table.table_contact-form
-            tr.tr_cttfm
-                th.th_cttfm
-                    | スタッフコード 2
-                td.td_cttfm 
-                    | !{_myPhpCo}
-            tr.tr_cttfm
-                th.th_cttfm
-                    | スタッフ名 
-                td.td_cttfm 
-                    | !{_myPhpNa}
-            tr.tr_cttfm
-                th.th_cttfm
-                    | 
-                td.td_cttfm 
-                    | 対象のスタッフデータを削除してよろしいですか？
-
-        form(method="post" action="./staff_delete_done.php" class="form_contact")
-            input(type="hidden" name="code" value!=_myPhpCo class="dta_select")                
-            input(type="hidden" name="name" value!=_myPhpNa class="dta_input")                
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
-                        input(type="submit" value="OK" class="dta_select")
+        p.mt-4.fw-bold.text-decoration-underline スタッフ削除
+        form(method="post" action="./staff_delete_done.php").bg-primary-subtle.p-4.mt-4
+            div.mb-3
+                label(for="code").form-label Staff Code
+                input(type="text" value!=_myPhpCo disabled readonly).form-control
+            div.mb-3
+                label(for="name").form-label Name
+                input(type="text" name="name" value!=_myPhpNa disabled readonly).form-control
+            div
+                input(type="hidden" name="code" value!=_myPhpCo).form-control                
+                input(type="hidden" name="name" value!=_myPhpNa).form-control 
+            div.mb-3
+                div.mt-5.mb-2.fw-bold 対象のスタッフデータを削除してよろしいですか？
+                button(type="submit" value="登録" ).btn.btn-primary Submit
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck
 

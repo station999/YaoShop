@@ -4,7 +4,7 @@
     if(isset($_SESSION['login'])==false)
     {
     echo 'ログインされていません。<br/>';
-    echo '<a href="./staff_login.php">ログイン画面へ</a>';
+    echo '<a href="../staff_login/staff_login.php">ログイン画面へ</a>';
     exit();
     }
     else
@@ -22,38 +22,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サイト名</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">  
-    <link rel="stylesheet" href="./../../../assets/css/style.css">
+    <link rel="stylesheet" href="C:/P/station/YaoShop/docs/dist/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>八百八：スタッフ一覧</title>
   </head>
-  <body>
-    <div class="site ly_site">
+  <body class="text-bg-secondary">
+    <div class="container text-bg-light p-3">
       <header class="st_header">
-        <div class="ly_hdr_inner">
-          <div class="el_top-logo"><a href="#{siteDomain}"> <img class="img_plncd frm_pln_img" src="#{workDirPath}assetsimagescommonlogologo.png" style="height: 50px;" alt="Home Logo"></a></div>
-          <input class="hmbg-btn" type="checkbox" id="hmbg-btn">
-          <label class="hmbg-icon" for="hmbg-btn"><span class="hmbg-icon_parts"></span></label>
-          <nav class="nav_global el_hdr_nav">
-            <ul class="ul_glbnv">
-              <li class="li_glbnv"> <a href="#{siteDomain}">Home</a></li>
-              <li class="li_glbnv"> <a href="###">情報</a></li>
-              <li class="li_glbnv"> <a href="###">商品</a></li>
-              <li class="li_glbnv"> <a href="###">注文</a></li>
-              <li class="li_glbnv"> <a href="###">登録</a></li>
-              <li class="li_glbnv"> <a href="#{siteDomain}/staff">スタッフ</a></li>
-            </ul>
-          </nav>
-        </div>
+        <nav class="row d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-warning bg-body-secondary">
+          <div class="col-12 col-md-1 mb-2 mb-md-0"><a class="d-inline-flex link-body-emphasis text-decoration-none" href="http://localhost:8000"><img class="d-inline-block align-text-top" src="C:/P/station/YaoShop/docs/dist/images/common/logo/logo.png" alt="Logo" width="40" height="32"></a></div>
+          <ul class="nav col-12 col-md-6 mb-2 justify-content-center mb-md-0">
+            <li class="nav-item px-2"> <a class="nav-link" href="http://localhost:8000">Home</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="http://localhost:8000/product/pro_list.php">商品一覧</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="http://localhost:8000/shop/shop_list.php">注文ページ</a></li>
+          </ul>
+          <div class="col-12 col-md-5 text-end">
+            <button class="btn btn-outline-primary me-2" type="button">Login<a class="nav-link" href="http://localhost:8000/member/member_top.php">お客様 ログイン</a></button>
+            <button class="btn btn-outline-primary me-2" type="button">Login<a class="nav-link" href="http://localhost:8000/staff_login/staff_top.php">スタッフ ログイン</a></button>
+            <button class="btn btn-primary" type="button">Sign-up</button>
+          </div>
+        </nav>
       </header>
-      <div class="st_container lyst_main">
+      <div class="st_main">
         <main>
-          <section class="section__odd">
+          <section class="container text-bg-success p-4">
             <div class="cpnt_title__border">
               <div class="inner_ttlbd__hrzn">
-                <h1>スタッフリスト 一覧画面            </h1>
+                <h1>スタッフ リスト一覧画面            </h1>
               </div>
             </div>
           </section>
@@ -64,7 +63,7 @@
                     require_once('../common/functions/sanitize.php');
             
             // DB connect 
-                    $dsn='mysql:host=mysql;dbname=ASWD_shop;charset=utf8';
+                    $dsn='mysql:host=mysql;dbname=yao_shop;charset=utf8';
                     $user='ad03';
                     $password='Pw12345@user-A';
                     $options = [
@@ -74,15 +73,16 @@
                     ];
                     $dbh=new PDO($dsn,$user,$password,$options);
             
+            
                     $sql='SELECT code,name,email FROM mst_staff WHERE 1';
                     $stmt=$dbh->prepare($sql);
                     $stmt->execute();
             
                     $dbh=null;
             
-                    echo 'スタッフ一覧<br/><br/>';
+                    echo '<p class="mt-4 text-decoration-underline fw-bold">スタッフ一覧</p>';
             
-                    echo '<form method="post" action="staff_branch.php">';
+                    echo '<form method="post" action="staff_branch.php" class="bg-primary-subtle p-4 mt-1" >';
                     while(true)
                     {
                         $rec=$stmt->fetch();
@@ -90,19 +90,25 @@
                         {
                             break;
                         }
-                        echo '<input type="radio" name="staffcode" value="'.$rec['code'].'">';
-                        echo $rec['name'].' _ _ _ ';
+                        echo '<div class="mb-3 form-check">';
+                        echo '<input type="radio" name="staffcode" value="'.$rec['code'].'" class="form-check-input">';
+                        echo '<label class="form-check-label" for="Email">';
+                        echo $rec['name'].' --- ';
                         echo $rec['email'];
-                        echo '<br/>';
+                        echo '</label>';
+                        echo '</div>';
                     }
                     echo '<br/>';
-                    echo '<input type="submit" name="disp" value="参照">';
-                    echo '<input type="submit" name="add" value="追加">';
-                    echo '<input type="submit" name="edit" value="修正">';
-                    echo '<input type="submit" name="delete" value="削除">';
+                    echo '<div class="btn-group" role="group" aria-label="Default button group">';
+                    echo '<button type="submit" name="disp" value="参照" class="btn btn-outline-primary">reference</button>';
+                    echo '<button type="submit" name="add" value="追加" class="btn btn-outline-primary">add</button>';
+                    echo '<button type="submit" name="edit" value="修正" class="btn btn-outline-primary">edit</button>';
+                    echo '<button type="submit" name="delete" value="削除" class="btn btn-outline-primary">deletion</button>';
+                    echo '</div>';
                     echo '</form>';
-                    echo '<br/>';
+                    echo '<button class="btn btn-warning my-5" type="button">';
                     echo '<a href="../staff_login/staff_top.php">トップメニュー へ</a>';
+                    echo '</button>';
                 }
                 catch(Exception $e)
                 {
@@ -115,13 +121,17 @@
           </section>
         </main>
       </div>
-      <footer class="st_footer lyst_ftr">
-        <hr class="hr_footer-line"><small class="small_copy">&copy;2000 AWD Shop</small>
-        <hr class="hr_footer-line">
+      <footer class="st_footer footer">
+        <div class="container text-bg-dark p-1">
+          <hr class="hr_footer-line">
+          <div class="row mx-auto text-white">
+            <div class="text-center"><small class="small_copy">&copy;2000 AWD Shop</small></div>
+          </div>
+          <hr class="hr_footer-line">
+        </div>
       </footer>
       
-      <script src="https://example.com/assets/js/base.js" charset="utf-8"></script>
-      <script src="https://example.com/assets/js/cnpt_table.js" charset="utf-8"></script>
+      <script src="C:/P/station/YaoShop/docs/dist/js/base.js" charset="utf-8"></script>
       
     </div>
   </body>

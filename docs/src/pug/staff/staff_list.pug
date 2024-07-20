@@ -3,12 +3,14 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ一覧
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフリスト 一覧画面            
+                h1 スタッフ リスト一覧画面            
 
 block content
     section.section__even
@@ -30,9 +32,9 @@ block content
 
                     $dbh=null;
 
-                    echo 'スタッフ一覧<br/><br/>';
+                    echo '<p class="mt-4 fw-bold text-decoration-underline">スタッフ一覧</p>';
 
-                    echo '<form method="post" action="staff_branch.php">';
+                    echo '<form method="post" action="staff_branch.php" class="bg-primary-subtle p-4 mt-1" >';
                     while(true)
                     {
                         $rec=$stmt->fetch();
@@ -40,19 +42,25 @@ block content
                         {
                             break;
                         }
-                        echo '<input type="radio" name="staffcode" value="'.$rec['code'].'">';
-                        echo $rec['name'].' _ _ _ ';
+                        echo '<div class="mb-3 form-check">';
+                        echo '<input type="radio" name="staffcode" value="'.$rec['code'].'" class="form-check-input">';
+                        echo '<label class="form-check-label" for="Email">';
+                        echo $rec['name'].' --- ';
                         echo $rec['email'];
-                        echo '<br/>';
+                        echo '</label>';
+                        echo '</div>';
                     }
                     echo '<br/>';
-                    echo '<input type="submit" name="disp" value="参照">';
-                    echo '<input type="submit" name="add" value="追加">';
-                    echo '<input type="submit" name="edit" value="修正">';
-                    echo '<input type="submit" name="delete" value="削除">';
+                    echo '<div class="btn-group" role="group" aria-label="Default button group">';
+                    echo '<button type="submit" name="disp" value="参照" class="btn btn-outline-primary">reference</button>';
+                    echo '<button type="submit" name="add" value="追加" class="btn btn-outline-primary">add</button>';
+                    echo '<button type="submit" name="edit" value="修正" class="btn btn-outline-primary">edit</button>';
+                    echo '<button type="submit" name="delete" value="削除" class="btn btn-outline-primary">deletion</button>';
+                    echo '</div>';
                     echo '</form>';
-                    echo '<br/>';
+                    echo '<button class="btn btn-warning my-5" type="button">';
                     echo '<a href="../staff_login/staff_top.php">トップメニュー へ</a>';
+                    echo '</button>';
                 }
                 catch(Exception $e)
                 {

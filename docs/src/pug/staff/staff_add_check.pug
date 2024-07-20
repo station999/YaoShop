@@ -10,7 +10,7 @@ block title
     section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフ 入力データ確認画面
+                h1 スタッフ登録 入力データ確認画面
             
 
 block content
@@ -48,7 +48,7 @@ block content
 
                 if(!filter_var($staff_email, FILTER_VALIDATE_EMAIL)) 
                 {
-                    $errors[] = '適切なメールアドレスが入力されていません。<br/>';
+                    $errors[] = '<p>適切なメールアドレスが入力されていません。</p>';
                 } 
                 else 
                 {
@@ -64,11 +64,11 @@ block content
 
                 if($staff_pass=='')
                 {
-                    $errors[] = '適切なパスワードが入力されていません。<br/>';
+                    $errors[] = '<p>適切なパスワードが入力されていません。</p>';
                 }
                 if($staff_pass!=$staff_pass2)
                 {
-                    $errors[] = 'パスワードが一致しません。<br/>';
+                    $errors[] = '<p>パスワードが一致しません。</p>';
                 }
 
                 if(!empty($errors))

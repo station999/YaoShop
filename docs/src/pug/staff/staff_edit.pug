@@ -3,12 +3,14 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ情報編集
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフ 情報編集
+                h1 スタッフ修正 登録情報画面
             
 
 block content
@@ -40,8 +42,8 @@ block content
                 }
                 catch(Exception $e)
                 {
-                    echo 'データを取得できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '<p>データを取得できませんでした。</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
@@ -51,40 +53,27 @@ block content
         - var _myPhpNa = '<?php echo $staff_name; ?>';
         - var _myPhpEm = '<?php echo $staff_email; ?>';
 
-        h2 スタッフ修正
+        p.mt-4.fw-bold.text-decoration-underline スタッフ修正
 
-        form(method="post" action="./staff_edit_check.php" class="form_contact")
-            input(type="hidden" name="code" value!=_myPhpCo class="dta_select")                
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | スタッフコード 
-                    td.td_cttfm 
-                        | <?php echo $staff_code; ?>
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="name") Name 
-                    td.td_cttfm
-                        input(type="text" name="name" value!=_myPhpNa class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="Email") Email 
-                    td.td_cttfm
-                        input(type="email" name="email" value!=_myPhpEm class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="pass") Password 
-                    td.td_cttfm
-                        input(type="password" name="pass" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="pass2") Password again
-                    td.td_cttfm
-                        input(type="password" name="pass2" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
-                        input(type="submit" value="OK" class="dta_select")
-
+        form(method="post" action="./staff_edit_check.php").bg-primary-subtle.p-4.mt-4
+            input(type="hidden" name="code" value!=_myPhpCo).form-control
+            div.mb-3
+                label(for="name").form-label Staff Code
+                input(type="text" value!=_myPhpCo disabled readonly).form-control
+            div.mb-3
+                label(for="name").form-label Name
+                input(type="text" name="name" value!=_myPhpNa ).form-control
+                div.form-text#emailHelp Please enter your full name for comfirmation.
+            div.mb-3
+                label(for="Email1").form-label Email address
+                input(type="email" name="email" value!=_myPhpEm).form-control#exampleInputEmail1
+            div.mb-3
+                label(for="pass").form-label Password
+                input(type="password" name="pass").form-control#exampleInputPassword1
+                div.form-text#emailHelp You will need to reset your password.
+            div.mb-3
+                label(for="pass2").form-label Password again
+                input(type="password" name="pass2").form-control#exampleInputPassword1
+                div.form-text#emailHelp Please enter your password again for comfirmation.
+            button(type="submit" value="登録" ).btn.btn-primary Submit
+            button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck

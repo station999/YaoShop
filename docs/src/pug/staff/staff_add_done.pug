@@ -43,14 +43,11 @@ block content
                     $dbh=null;
 
                     echo '<p>';
-                    echo '<span class="fs-6 font-weight-bold">';
+                    echo '<span class="fs-6 fw-bold">';
                     echo $staff_name;
                     echo '</span>';
                     echo 'さんを登録しました。';
                     echo '</p>';
-                    echo '<button class="btn btn-warning" type="button">';
-                    echo '<a href="staff_list.php">戻る</a>';
-                    echo '</button>';
                 }
                 catch(Exception $e)
                 {
@@ -60,9 +57,12 @@ block content
                     echo '</span>';
                     echo 'さんを登録できませんでした。';
                     echo '</p>';
-                    echo '<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
             ?>
+            
+        button(type="button").btn.btn-warning.my-3
+            a(href="./staff_list.php") 戻る
+
