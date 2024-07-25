@@ -3,16 +3,18 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：商品登録実行
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 登録結果
-            
+                h1 商品登録 結果画面
+
 
 block content
-    section.section__even
+    section.container.p-4
         . 
             <?php
                 try 
@@ -41,18 +43,26 @@ block content
 
                     $dbh=null;
 
+                    echo '<p>';
+                    echo '<span class="fs-6 fw-bold">';
                     echo $pro_name;
-                    echo 'を登録しました。<br/>';
+                    echo '</span>';
+                    echo 'を登録しました。';
+                    echo '</p>';
                 }
                 catch(Exception $e)
                 {
+                    echo '<p>';
+                    echo '<span class="fs-6 font-weight-bold">';
                     echo $pro_name;
-                    echo 'を登録できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '</span>';
+                    echo 'を登録できませんでした。';
+                    echo '</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
             ?>
-
-        div.form_contact
-            a.dta_select(href='./pro_list.php') 戻る
+        
+        button(type="button").btn.btn-warning.my-3
+            a(href="./pro_list.php") 戻る

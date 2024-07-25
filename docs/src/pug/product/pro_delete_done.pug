@@ -3,16 +3,18 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ削除実行
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 削除登録結果
+                h1 商品削除 結果画面
             
 
 block content
-    section.section__even
+    section.container.p-4
         . 
             <?php
                 try 
@@ -42,18 +44,27 @@ block content
                         unlink('./gazou/'.$pro_gazou_name);
                     }
 
+                    echo '<p>';
+                    echo '<span class="fs-6 fw-bold">';
                     echo $pro_name;
-                    echo 'の情報を削除しました。<br/>';
+                    echo '</span>';
+                    echo 'の情報を削除しました。';
+                    echo '</p>';
                 }
                 catch(Exception $e)
                 {
+                    echo '<p>';
+                    echo '<span class="fs-6 font-weight-bold">';
                     echo $pro_name;
-                    echo 'を削除できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '</span>';
+                    echo 'を削除できませんでした。';
+                    echo '</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
             ?>
 
-        div.form_contact
-            a.dta_select(href='./pro_list.php') 戻る
+        button(type="button").btn.btn-warning.my-3
+            a(href="./pro_list.php") 戻る
+

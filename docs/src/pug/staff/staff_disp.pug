@@ -14,7 +14,7 @@ block title
             
 
 block content
-    section.section__even
+    section.container.p-4
         .
             <?php
                 try 
@@ -58,7 +58,7 @@ block content
             input(type="hidden" name="staffcode" value!=_myPhpCo).form-control                
             div.mb-3
                 label(for="code").form-label Staff Code
-                input(type="text" value!=_myPhpCo disabled readonly).form-control
+                input(type="text" name="code" value!=_myPhpCo disabled readonly).form-control
             div.mb-3
                 label(for="name").form-label Name
                 input(type="text" name="name" value!=_myPhpNa disabled readonly).form-control

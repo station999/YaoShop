@@ -13,7 +13,7 @@ block title
                 h1 スタッフ リスト一覧画面            
 
 block content
-    section.section__even
+    section.container.p-4
         . 
             <?php
                 try 
@@ -58,9 +58,6 @@ block content
                     echo '<button type="submit" name="delete" value="削除" class="btn btn-outline-primary">deletion</button>';
                     echo '</div>';
                     echo '</form>';
-                    echo '<button class="btn btn-warning my-5" type="button">';
-                    echo '<a href="../staff_login/staff_top.php">トップメニュー へ</a>';
-                    echo '</button>';
                 }
                 catch(Exception $e)
                 {
@@ -71,3 +68,5 @@ block content
 
             ?>
 
+        button(type="button").btn.btn-warning.my-3
+            a(href="../index.php") ホームページへ

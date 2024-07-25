@@ -84,8 +84,10 @@
                 <input class="form-check-input" type="checkbox" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div>
-              <button class="btn btn-primary" type="submit">Submit</button>
-              <button class="btn btn-secondary" type="button" onclick="history.back()">Buck</button>
+              <div class="mb-3 mt-5">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-secondary" type="button" onclick="history.back()">Buck</button>
+              </div>
             </form>
           </section>
         </main>

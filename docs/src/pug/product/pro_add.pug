@@ -3,37 +3,31 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：商品登録
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 商品追加
+                h1 商品登録 入力画面
             
 
 block content
-    section.section__even
-        form(method="post" action="./pro_add_check.php" enctype="multipart/form-data" class="form_contact")
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="name") Product Name 
-                    td.td_cttfm
-                        input(type="text" name="name" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="price") Price 
-                    td.td_cttfm
-                        input(type="text" name="price" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="gazou") Select image 
-                    td.td_cttfm
-                        input(type="file" name="gazou" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
-                        input(type="submit" value="OK" class="dta_select")
+    section.container.p-4
+        p.mt-4.fw-bold.text-decoration-underline 商品登録
+        form(method="post" action="./pro_add_check.php" enctype="multipart/form-data").bg-primary-subtle.p-4.mt-4
+            div.mb-3
+                label(for="name").form-label Product Name
+                input(type="text" name="name").form-control
+                div.form-text Please enter Product name.
+            div.mb-3
+                label(for="price").form-label Price(yen)
+                input(type="text" name="price").form-control
+            div.mb-3
+                label(for="gazou").form-label Select image
+                input(type="file" name="gazou").form-control
+            div.mb-3.mt-5
+                button(type="submit" value="登録").btn.btn-primary Submit
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck
 

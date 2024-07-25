@@ -57,7 +57,7 @@
               </div>
             </div>
           </section>
-          <section class="section__even">
+          <section class="container p-4">
             <?php
                 try 
                 {
@@ -102,7 +102,7 @@
               <input class="form-control" type="hidden" name="staffcode" value="<?php echo $staff_code; ?>">
               <div class="mb-3">
                 <label class="form-label" for="code">Staff Code</label>
-                <input class="form-control" type="text" value="<?php echo $staff_code; ?>" disabled readonly>
+                <input class="form-control" type="text" name="code" value="<?php echo $staff_code; ?>" disabled readonly>
               </div>
               <div class="mb-3">
                 <label class="form-label" for="name">Name</label>

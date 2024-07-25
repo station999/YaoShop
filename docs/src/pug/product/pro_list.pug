@@ -3,16 +3,18 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：商品一覧
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 商品 リスト
+                h1 商品 リスト一覧画面
             
 
 block content
-    section.section__even
+    section.container.p-4
         . 
             <?php
                 try 
@@ -30,9 +32,10 @@ block content
                     $stmt->execute();
 
                     $dbh=null;
-                    echo '商品一覧<br/><br/>';
 
-                    echo '<form method="post" action="pro_branch.php">';
+                    echo '<p class="mt-4 fw-bold text-decoration-underline">商品一覧</p>';
+                    
+                    echo '<form method="post" action="pro_branch.php" class="bg-primary-subtle p-4 mt-1" >';
                     while(true)
                     {
                         $rec=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,18 +43,22 @@ block content
                         {
                             break;
                         }
-                        echo '<input type="radio" name="procode" value="'.$rec['code'].'">';
-                        echo $rec['name'].' _ _ _ ';
-                        echo $rec['price'].' 円';
-                        echo '<br/>';
+                        echo '<div class="mb-3 form-check">';
+                        echo '<input type="radio" name="procode" value="'.$rec['code'].'" class="form-check-input">';
+                        echo '<label class="form-check-label" for="price">';
+                        echo $rec['name'].' --- ';
+                        echo $rec['price'].' yen';
+                        echo '</label>';
+                        echo '</div>';
                     }
                     echo '<br/>';
-                    echo '<input type="submit" name="disp" value="参照">';
-                    echo '<input type="submit" name="add" value="追加">';
-                    echo '<input type="submit" name="edit" value="修正">';
-                    echo '<input type="submit" name="delete" value="削除">';
+                    echo '<div class="btn-group" role="group" aria-label="Default button group">';
+                    echo '<button type="submit" name="disp" value="参照" class="btn btn-outline-primary">reference</button>';
+                    echo '<button type="submit" name="add" value="追加" class="btn btn-outline-primary">add</button>';
+                    echo '<button type="submit" name="edit" value="修正" class="btn btn-outline-primary">edit</button>';
+                    echo '<button type="submit" name="delete" value="削除" class="btn btn-outline-primary">deletion</button>';
+                    echo '</div>';
                     echo '</form>';
-                    
                 }
                 catch(Exception $e)
                 {
@@ -61,6 +68,6 @@ block content
                 }
 
             ?>
-
-        a(href="../staff_login/staff_top.php")
-            |トップメニュー へ
+        
+        button(type="button").btn.btn-warning.my-3
+            a(href="../index.php") ホームページへ

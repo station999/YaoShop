@@ -3,16 +3,18 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：商品削除
 
 block title
     section.section__odd
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 商品 削除画面
+                h1 商品削除 対象表示画面
             
 
 block content
-    section.section__even
+    section.container.p-4
         .
             <?php
                 try 
@@ -41,14 +43,14 @@ block content
                         $disp_gazou='';
                     }
                     else {
-                        $disp_gazou='<img src="./gazou/' . $pro_gazou_name . '">';
+                        $disp_gazou='<img src="./gazou/' . $pro_gazou_name . '" alt="gazou" class="img-fluid">';
                     }
 
                 }
                 catch(Exception $e)
                 {
-                    echo 'データを取得できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '<p>データを取得できませんでした。</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
@@ -59,39 +61,21 @@ block content
         - var _myPhpGz = '<?php echo $pro_gazou_name; ?>';
         - var _myPhpGzDisp = '<?php echo $disp_gazou; ?>';
 
-        h2 商品削除
-
-        table.table_contact-form
-            tr.tr_cttfm
-                th.th_cttfm
-                    | 商品コード
-                td.td_cttfm 
-                    | !{_myPhpCo}
-            tr.tr_cttfm
-                th.th_cttfm
-                    | 商品名 
-                td.td_cttfm 
-                    | !{_myPhpNa}
-            tr.tr_cttfm
-                th.th_cttfm
-                    | イメージ 
-                td.td_cttfm 
-                    | !{_myPhpGzDisp}
-            tr.tr_cttfm
-                th.th_cttfm
-                    | 
-                td.td_cttfm 
-                    | 対象の商品データを削除してよろしいですか？
-
-        form(method="post" action="./pro_delete_done.php" class="form_contact")
+        p.mt-4.fw-bold.text-decoration-underline 商品削除
+        form(method="post" action="./pro_delete_done.php").bg-primary-subtle.p-4.mt-4
             input(type="hidden" name="code" value!=_myPhpCo class="dta_select")                
             input(type="hidden" name="name" value!=_myPhpNa class="dta_input")                
             input(type="hidden" name="gazou_name" value!=_myPhpGz class="dta_input")                
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
-                        input(type="submit" value="OK" class="dta_select")
-
+            div.mb-3
+                label(for="code").form-label Product Code :
+                input(type="text" value!=_myPhpCo disabled readonly).form-control
+            div.mb-3
+                label(for="name").form-label Product Name :
+                input(type="text" name="name" value!=_myPhpNa disabled readonly).form-control
+            div.mb-3
+                label(for="gazou").form-label Gazou :
+                div(style="width: 200px;").img !{_myPhpGzDisp}
+            div.mb-3
+                div.mt-5.mb-2.fw-bold 対象の商品データを削除してよろしいですか？
+                button(type="submit" value="登録" ).btn.btn-primary Submit
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck

@@ -3,16 +3,18 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：商品情報
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 商品情報 参照画面
+                h1 商品情報 表示画面
             
 
 block content
-    section.section__even
+    section.container.p-4
         .
             <?php
                 try 
@@ -43,14 +45,14 @@ block content
                     }
                     else
                     {
-                        $disp_gazou='<img src="./gazou/'.$pro_gazou_name.'">';
+                        $disp_gazou='<img src="./gazou/'.$pro_gazou_name.'" alt="gazou" class="img-fluid">';
                     }
 
                 }
                 catch(Exception $e)
                 {
-                    echo 'データを取得できませんでした。<br/>';
-                    echo 'ただいま障害により大変ご迷惑をおかけしております。';
+                    echo '<p>データを取得できませんでした。</p>';
+                    echo '<p>ただいま障害により大変ご迷惑をおかけしております。</p>';
                     exit();
                 }
 
@@ -59,43 +61,30 @@ block content
         - var _myPhpCo = '<?php echo $pro_code; ?>';
         - var _myPhpNa = '<?php echo $pro_name; ?>';
         - var _myPhpPr = '<?php echo $pro_price; ?>';
-        - var _myPhpGz = '<?php echo $disp_gazou; ?>';
+        - var _myPhpGzDisp = '<?php echo $disp_gazou; ?>';
 
-        h2 商品情報
+        p.mt-4.fw-bold.text-decoration-underline 商品情報
+        form(method="post" action="pro_branch.php").bg-primary-subtle.p-4.mt-4
+            input(type="hidden" name="procode" value!=_myPhpCo).form-control 
+            div.mb-3
+                label(for="code").form-label Product Code :
+                input(type="text" name="code" value!=_myPhpCo disabled readonly).form-control
+            div.mb-3
+                label(for="name").form-label Product Name :
+                input(type="text" name="name" value!=_myPhpNa disabled readonly).form-control
+            div.mb-3
+                label(for="price").form-label Product Price :
+                input(type="text" name="price" value!=_myPhpPr disabled readonly).form-control
+            div.mb-3
+                label(for="gazou").form-label Gazou :
+                div(style="width: 200px;").img !{_myPhpGzDisp}
+            div.mb-3
+                label(for="button").form-label 処理の選択
+                br
+                div(role="group").btn-group
+                    button(type="submit" name="edit" value="修正").btn.btn-outline-primary edit
+                    button(type="submit" name="delete" value="削除").btn.btn-outline-primary deletion
+            div.mb-3
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck
 
-        //- form(class="form_contact")
-        form(method="post" action="pro_branch.php" class="form_contact")
-            input(type="hidden" name="procode" value!=_myPhpCo class="dta_select") 
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | 商品コード 
-                    td.td_cttfm 
-                        | !{_myPhpCo}
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | 商品名 
-                    td.td_cttfm 
-                        | !{_myPhpNa}
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | 価格 
-                    td.td_cttfm 
-                        | !{_myPhpPr} 円
-                tr.tr_cttfm
-                    th.th_cttfm
-                        | 画像 
-                    td.td_cttfm 
-                        | !{_myPhpGz}
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="submit" name="edit" value="修正" class="dta_select")
-                        input(type="submit" name="delete" value="削除" class="dta_select")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="button" onclick="history.back()" value="戻る" class="dta_select")
 

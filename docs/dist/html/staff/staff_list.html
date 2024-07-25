@@ -57,7 +57,7 @@
               </div>
             </div>
           </section>
-          <section class="section__even">
+          <section class="container p-4">
             <?php
                 try 
                 {
@@ -107,9 +107,6 @@
                     echo '<button type="submit" name="delete" value="削除" class="btn btn-outline-primary">deletion</button>';
                     echo '</div>';
                     echo '</form>';
-                    echo '<button class="btn btn-warning my-5" type="button">';
-                    echo '<a href="../staff_login/staff_top.php">トップメニュー へ</a>';
-                    echo '</button>';
                 }
                 catch(Exception $e)
                 {
@@ -119,6 +116,8 @@
                 }
             
             ?>
+            
+            <button class="btn btn-warning my-3" type="button"><a href="../index.php">ホームページへ</a></button>
           </section>
         </main>
       </div>

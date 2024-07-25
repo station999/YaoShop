@@ -3,16 +3,18 @@ extends ./../_layout/_page_session.pug
 block session 
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：NG 
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
                 h1 NG 画面
             
 
 block content
-    section.section__even
+    section.container.p-4
         p 商品が選択されていません。
-        p 
+        button(type="button").btn.btn-warning.my-3
             a(href="./pro_list.php") 戻る

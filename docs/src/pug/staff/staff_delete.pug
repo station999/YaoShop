@@ -14,7 +14,7 @@ block title
             
 
 block content
-    section.section__even
+    section.container.p-4
         .
             <?php
                 try 
@@ -52,15 +52,14 @@ block content
 
         p.mt-4.fw-bold.text-decoration-underline スタッフ削除
         form(method="post" action="./staff_delete_done.php").bg-primary-subtle.p-4.mt-4
+            input(type="hidden" name="code" value!=_myPhpCo).form-control                
+            input(type="hidden" name="name" value!=_myPhpNa).form-control 
             div.mb-3
                 label(for="code").form-label Staff Code
                 input(type="text" value!=_myPhpCo disabled readonly).form-control
             div.mb-3
                 label(for="name").form-label Name
                 input(type="text" name="name" value!=_myPhpNa disabled readonly).form-control
-            div
-                input(type="hidden" name="code" value!=_myPhpCo).form-control                
-                input(type="hidden" name="name" value!=_myPhpNa).form-control 
             div.mb-3
                 div.mt-5.mb-2.fw-bold 対象のスタッフデータを削除してよろしいですか？
                 button(type="submit" value="登録" ).btn.btn-primary Submit

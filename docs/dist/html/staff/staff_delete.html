@@ -57,7 +57,7 @@
               </div>
             </div>
           </section>
-          <section class="section__even">
+          <section class="container p-4">
             <?php
                 try 
                 {
@@ -97,6 +97,8 @@
             
             <p class="mt-4 fw-bold text-decoration-underline">スタッフ削除</p>
             <form class="bg-primary-subtle p-4 mt-4" method="post" action="./staff_delete_done.php">
+              <input class="form-control" type="hidden" name="code" value="<?php echo $staff_code; ?>">
+              <input class="form-control" type="hidden" name="name" value="<?php echo $staff_name; ?>">
               <div class="mb-3">
                 <label class="form-label" for="code">Staff Code</label>
                 <input class="form-control" type="text" value="<?php echo $staff_code; ?>" disabled readonly>
@@ -104,10 +106,6 @@
               <div class="mb-3">
                 <label class="form-label" for="name">Name</label>
                 <input class="form-control" type="text" name="name" value="<?php echo $staff_name; ?>" disabled readonly>
-              </div>
-              <div>
-                <input class="form-control" type="hidden" name="code" value="<?php echo $staff_code; ?>">
-                <input class="form-control" type="hidden" name="name" value="<?php echo $staff_name; ?>">
               </div>
               <div class="mb-3">
                 <div class="mt-5 mb-2 fw-bold">対象のスタッフデータを削除してよろしいですか？</div>
