@@ -3,31 +3,29 @@ extends ./../_layout/_page_session.pug
 block session
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title 八百八：スタッフ登録
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 管理 トップ画面
+                h1 スタッフ管理 トップ画面
             
 
 block content
-    section.section__even
-        h2 ショップ管理トップメニュー
-            table.table_contact-form
-                tr.tr_cttfm
-                    td.td_cttfm
-                        a(href="./../staff/staff_list.php")
-                            | スタッフ管理画面
-                tr.tr_cttfm
-                    td.td_cttfm
-                        a(href="./../product/pro_list.php")
-                            | 商品管理画面
-                tr.tr_cttfm
-                    td.td_cttfm
-                        a(href="./../order/order_download.php")
-                            | 注文データ ダウンロード
-                tr.tr_cttfm
-                    td.td_cttfm
-                        a(href="./staff_logout.php")
-                            | ログアウト
+    section.container.p-4
+        p.mt-4.fw-bold.text-decoration-underline ショップ管理トップメニュー
+        ul.list-group.list-group-flush.p-4.mt-4
+            li.list-group-item
+                a(href="./../staff/staff_list.php")
+                    | スタッフ管理画面
+            li.list-group-item
+                a(href="./../product/pro_list.php")
+                    | 商品管理画面
+            li.list-group-item
+                a(href="./../order/order_download.php")
+                    | 注文データ ダウンロード
+            li.list-group-item
+                a(href="./staff_logout.php")
+                    | ログアウト

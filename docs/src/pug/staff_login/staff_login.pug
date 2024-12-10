@@ -1,30 +1,30 @@
-extends ./../_layout/_page.pug
+//- extends ./../_layout/_page.pug
+extends ./../_layout/_page_session.pug
 
+block session
+    //- include ./../_config/_session-check_staff.pug
+
+block meta_title
+    title 八百八：ログイン
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
                 h1 スタッフ ログイン画面
             
-
 block content
-    section.section__even
-        h2 スタッフログイン
-        form(method="post" action="staff_login_check.php" class="form_contact")
-            table.table_contact-form
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="code") スタッフ コード
-                    td.td_cttfm
-                        input(type="text" name="code" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="pass") パスワード
-                    td.td_cttfm
-                        input(type="text" name="pass" class="dta_input")
-                tr.tr_cttfm
-                    th.th_cttfm
-                        label(for="botton") -
-                    td.td_cttfm
-                        input(type="submit" value="ログイン" class="dta_select")
+    section.container.p-4
+        p.mt-4.fw-bold.text-decoration-underline スタッフログイン
+        form(method="post" action="./staff_login_check.php" enctype="multipart/form-data").bg-primary-subtle.p-4.mt-4
+            div.mb-3
+                label(for="code").form-label Staff Code
+                input(type="text" name="code" aria-describedby="codeHelp").form-control
+                div.form-text#emailHelp Please enter your Code.
+            div.mb-3
+                label(for="pass").form-label Pass Word
+                input(type="text" name="pass" aria-describedby="passwordHelp").form-control
+                div.form-text#emailHelp Please enter your PassWord.
+            div.mb-3.mt-5
+                button(type="submit" value="ログイン").btn.btn-primary Login
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck

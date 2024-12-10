@@ -3,42 +3,46 @@ extends ./../_layout/_page_session.pug
 block session
     include ./../_config/_session-check_staff.pug
 
+block meta_title
+    title ダウンロード 画面
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
                 h1 ダウンロード 画面
             
-
 block content
-    section.section__even
+    section.container.p-4
         . 
             <?php
                 require_once('../common/functions/pulldown_ymd.php');
             ?>
 
-        h2 ダウンロード対象選択
-        p ダウンロードしたい注文日を選んでください。</br>
-        form(method="post" action="order_download_done.php")
+        p.mt-4.fw-bold.text-decoration-underline ダウンロード対象選択
+        form(method="post" action="order_download_done.php" enctype="multipart/form-data").bg-primary-subtle.p-4.mt-4
+            p ダウンロードしたい注文日を選んでください。</br>
             |
             |
             . 
                 <?php pulldown_year();?>
-            span 年
+            span.mx-1
             |
             |
             . 
                 <?php pulldown_month();?>
-            span 月
+            span.mx-1
             |
             |
             . 
                 <?php pulldown_day();?>
-            span 日
             br
-            input(type="submit" value="データ抽出")
-            br
-        br
-        a(href="../staff_login/staff_top.php") トップメニュー
+
+            div.mb-3.mt-5
+                button(type="submit" value="データ抽出").btn.btn-primary Submit
+                button(type="button" value="戻る" onclick="history.back()").btn.btn-secondary Buck
+        
+        button(type="button").btn.btn-warning.my-3
+            a(href="../staff_login/staff_top.php") スタッフメニュー
+
 

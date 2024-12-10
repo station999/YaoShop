@@ -1,15 +1,25 @@
-extends ./../_layout/_page.pug
+//- extends ./../_layout/_page.pug
+extends ./../_layout/_page_session.pug
 
+block session
+    //- include ./../_config/_session-check_staff.pug
+    .
+        <?php
+            ob_start();
+            session_start();
+        ?>
+
+block meta_title
+    title 八百八：ログインチェック
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 スタッフログイン チェック画面
+                h1 スタッフ ログインチェック画面
             
-
 block content
-    section.section__even
+    section.container.p-4
         . 
             <?php
                 //- ob_start();
@@ -48,15 +58,24 @@ block content
                     }
                     else 
                     {
-                        echo 'スタッフコードかパスワードが間違っています。<br/>';
-                        echo '<a href="staff_login.php">戻る</a>';
+                        echo '<p>';
+                        echo 'スタッフコードかパスワードが間違っています。';
+                        echo '</p>';
                     }      
                 }
                 catch(Exception $e)
                 {
+                    echo '<p>';
                     echo '通信障害のため確認できませんでした。<br/>';
+                    echo '</p>';
+                    echo '<p>';
                     echo '大変ご迷惑をおかけしております。';
+                    echo '</p>';
                     exit();
                 }
                 //- ob_end_flush();
             ?>
+
+            
+        button(type="button").btn.btn-warning.my-3
+            a(href="./staff_login.php") 戻る

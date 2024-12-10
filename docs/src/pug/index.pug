@@ -1,0 +1,158 @@
+extends ./_layout/_page_session.pug
+
+block session 
+    include ./_config/_session-check_staff.pug
+
+block meta_title
+    title 八百八：Home
+
+block title
+    section.container.text-bg-success.p-4
+        div.cpnt_title__border
+            div.inner_ttlbd__hrzn
+                h1 全ファイル表示
+
+block content
+    section.container.p-4
+        p.mt-4.fw-bold.text-decoration-underline ORDER
+        ul.list-group.list-group-horizontal.p-4.mt-2
+            li.list-group-item
+                a(href="./../order/order_download_done.php")
+                    | 注文データ ダウンロード 実行
+            li.list-group-item
+                a(href="./../order/order_download.php")
+                    | 注文データ ダウンロード
+        p.mt-4.fw-bold.text-decoration-underline PRODUCT
+        ul.list-group.list-group-flush.p-4.mt-2
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./../product/pro_add_check.php")
+                            | 商品 追加 チェック
+                    li.list-group-item
+                        a(href="./../product/pro_add_done.php").ml-2
+                            | 商品 追加 実行
+                    li.list-group-item
+                        a(href="./../product/pro_add.php").ml-2
+                            | 商品 追加
+            li.list-group-item
+                a(href="./../product/pro_branch.php")
+                    | 商品 枝
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./../product/pro_delete_done.php")
+                            | 商品 削除 実行
+                    li.list-group-item
+                        a(href="./../product/pro_delete.php")
+                            | 商品 削除
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./../product/pro_edit_check.php")
+                            | 商品 編集 チェック
+                    li.list-group-item
+                        a(href="./../product/pro_edit_done.php")
+                            | 商品 編集 実行
+                    li.list-group-item
+                        a(href="./../product/pro_edit.php")
+                            | 商品 編集
+            li.list-group-item
+                a(href="./../product/pro_list.php")
+                    | 商品 リスト
+            li.list-group-item
+                a(href="./../product/pro_ng.php")
+                    | 商品 NG
+        p.mt-4.fw-bold.text-decoration-underline SHOP
+        ul.list-group.list-group-flush.p-4.mt-2
+            li.list-group-item
+                a(href="./../shop/clear_cart.php")
+                    | カート 空
+            li.list-group-item
+                a(href="./../shop/kazu_change.php")
+                    | 点数 変更
+            li.list-group-item
+                a(href="./../shop/shop_cartin.php")
+                    | カート IN
+            li.list-group-item
+                a(href="./../shop/shop_cartlook.php")
+                    | カート LOOK
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./../shop/shop_form_check.php")
+                            | カート フォーム チェック
+                    li.list-group-item
+                        a(href="./../shop/shop_form_done.php")
+                            | カート フォーム 実行
+                    li.list-group-item
+                        a(href="./../shop/shop_form.php")
+                            | カート フォーム
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./../shop/shop_list.php")
+                            | ショップ リスト
+                    li.list-group-item
+                        a(href="./../shop/shop_product.php")
+                            | ショップ プロダクト
+        p.mt-4.fw-bold.text-decoration-underline STAFF
+        ul.list-group.list-group-flush.p-4.mt-2
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./staff_add_check.php")
+                            | スタッフ 追加 チェック
+                    li.list-group-item
+                        a(href="./staff_add_done.php")
+                            | スタッフ 追加 実行
+                    li.list-group-item
+                        a(href="./staff_add.php")
+                            | スタッフ 追加
+            li.list-group-item
+                a(href="./staff_branch.php")
+                    | スタッフ 枝
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./staff_delete_done.php")
+                            | スタッフ 削除 実行
+                    li.list-group-item
+                        a(href="./staff_delete.php")
+                            | スタッフ 削除
+            li.list-group-item
+                a(href="./staff_disp.php")
+                    | スタッフ 表示
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./staff_edit_check.php")
+                            | スタッフ 編集 チェック
+                    li.list-group-item
+                        a(href="./staff_edit_done.php")
+                            | スタッフ 編集 実行
+                    li.list-group-item
+                        a(href="./staff_edit.php")
+                            | スタッフ 編集
+            li.list-group-item
+                a(href="./staff_list.php")
+                    | スタッフ リスト
+            li.list-group-item
+                a(href="./staff_ng.php")
+                    | スタッフ NG
+        p.mt-4.fw-bold.text-decoration-underline STAFF LOGIN
+        ul.list-group.list-group-flush.p-4.mt-2
+            li.list-group-item
+                ul.list-group.list-group-horizontal
+                    li.list-group-item
+                        a(href="./staff_login_check.php")
+                            | ログin チェック
+                    li.list-group-item
+                        a(href="./staff_login.php")
+                            | ログin 
+            li.list-group-item
+                a(href="./staff_logout.php")
+                    | ログアウト
+            li.list-group-item
+                a(href="./staff_top.php")
+                    | Staff Top

@@ -11,18 +11,22 @@ block session
             @session_destroy();
         ?>
 
+block meta_title
+    title 八百八：ログアウト
 
 block title
-    section.section__odd
+    section.container.text-bg-success.p-4
         div.cpnt_title__border
             div.inner_ttlbd__hrzn
-                h1 ログアウト画面
-            
+                h1 スタッフ ログアウト画面            
 
 block content
-    section.section__even
+    section.container.p-4
         p ログアウトしました。
-        br
-        a(href="./staff_login.php")
-            | ログイン画面へ        
-        
+        div.mb-3.mt-5
+            button(type="submit" value="ログイン").btn.btn-primary 
+                a(href="./staff_login.php")
+                    | Login画面へ 
+            button(type="button").btn.btn-warning.my-3
+                a(href="../index.php") 
+                    | ホームページへ

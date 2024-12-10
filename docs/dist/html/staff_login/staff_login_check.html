@@ -1,3 +1,9 @@
+
+<?php
+    ob_start();
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -10,6 +16,7 @@
     <link rel="stylesheet" href="C:/P/station/YaoShop/docs/dist/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>八百八：ログインチェック</title>
   </head>
   <body class="text-bg-secondary">
     <div class="container text-bg-light p-3">
@@ -30,14 +37,14 @@
       </header>
       <div class="st_main">
         <main>
-          <section class="section__odd">
+          <section class="container text-bg-success p-4">
             <div class="cpnt_title__border">
               <div class="inner_ttlbd__hrzn">
-                <h1>スタッフログイン チェック画面</h1>
+                <h1>スタッフ ログインチェック画面</h1>
               </div>
             </div>
           </section>
-          <section class="section__even">
+          <section class="container p-4">
             <?php
                 //- ob_start();
                 //- session_start();
@@ -81,18 +88,26 @@
                     }
                     else 
                     {
-                        echo 'スタッフコードかパスワードが間違っています。<br/>';
-                        echo '<a href="staff_login.php">戻る</a>';
+                        echo '<p>';
+                        echo 'スタッフコードかパスワードが間違っています。';
+                        echo '</p>';
                     }      
                 }
                 catch(Exception $e)
                 {
+                    echo '<p>';
                     echo '通信障害のため確認できませんでした。<br/>';
+                    echo '</p>';
+                    echo '<p>';
                     echo '大変ご迷惑をおかけしております。';
+                    echo '</p>';
                     exit();
                 }
                 //- ob_end_flush();
             ?>
+            
+            
+            <button class="btn btn-warning my-3" type="button"><a href="./staff_login.php">戻る</a></button>
           </section>
         </main>
       </div>

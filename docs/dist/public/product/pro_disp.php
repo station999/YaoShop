@@ -34,7 +34,7 @@
     <div class="container text-bg-light p-3">
       <header class="st_header">
         <nav class="row d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-warning bg-body-secondary">
-          <div class="col-12 col-md-1 mb-2 mb-md-0"><a class="d-inline-flex link-body-emphasis text-decoration-none" href="http://localhost:8000"><img class="d-inline-block align-text-top" src="C:/P/station/YaoShop/docs/dist/images/common/logo/logo.png" alt="Logo" width="40" height="32"></a></div>
+          <div class="col-12 col-md-1 mb-2 mb-md-0"><a class="d-inline-flex link-body-emphasis text-decoration-none" href="http://localhost:8000"><img class="d-inline-block align-text-top" src="./../../../images/common/logo/logo.png" alt="Logo" width="40" height="32"></a></div>
           <ul class="nav col-12 col-md-6 mb-2 justify-content-center mb-md-0">
             <li class="nav-item px-2"> <a class="nav-link" href="http://localhost:8000">Home</a></li>
             <li class="nav-item px-2"><a class="nav-link" href="http://localhost:8000/product/pro_list.php">商品一覧</a></li>

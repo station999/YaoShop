@@ -47,6 +47,24 @@
             echo '<option value="11">11</option>';
             echo '<option value="12">12</option>';
             echo '<option value="13">13</option>';
-        echo '</select>';
-        echo '<span>月</span>';
+            echo '<option value="14">14</option>';
+            echo '<option value="15">15</option>';
+            echo '<option value="16">16</option>';
+            echo '<option value="17">17</option>';
+            echo '<option value="18">18</option>';
+            echo '<option value="19">19</option>';
+            echo '<option value="20">20</option>';
+            echo '<option value="21">21</option>';
+            echo '<option value="22">22</option>';
+            echo '<option value="23">23</option>';
+            echo '<option value="24">24</option>';
+            echo '<option value="25">25</option>';
+            echo '<option value="26">26</option>';
+            echo '<option value="27">27</option>';
+            echo '<option value="28">28</option>';
+            echo '<option value="29">29</option>';
+            echo '<option value="30">30</option>';
+            echo '<option value="31">31</option>';
+            echo '</select>';
+        echo '<span>日</span>';
     }
